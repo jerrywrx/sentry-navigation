@@ -4,11 +4,11 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import actionlib
 
 # Define waypoints
-waypoints = {
-    'a': {'x': -3.791390895843506, 'y': -2.7204017639160156, 'oz': -0.9999955389682309, 'ow': 0.0029869790152065715},
-    'b': {'x': -2.3178482055664062, 'y': 3.0225839614868164, 'oz': 0.7075646159501544, 'ow': 0.7066486497937362},
-    'c': {'x': 1.0240206718444824, 'y': 3.1247355937957764, 'oz': -0.6980509641612888, 'ow': 0.716048078995744}
-}
+waypoints = [
+    {'name': 'a', 'x': -3.791390895843506, 'y': -2.7204017639160156, 'oz': -0.9999955389682309, 'ow': 0.0029869790152065715},
+    {'name': 'b', 'x': -2.3178482055664062, 'y': 3.0225839614868164, 'oz': 0.7075646159501544, 'ow': 0.7066486497937362},
+    {'name': 'c', 'x': 1.0240206718444824, 'y': 3.1247355937957764, 'oz': -0.6980509641612888, 'ow': 0.716048078995744}
+]
 
 def send_goal(waypoint):
     client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
@@ -35,18 +35,13 @@ def main():
     rospy.init_node('waypoint_navigator')
 
     while not rospy.is_shutdown():
-        user_input = input("Enter waypoint (a, b, c) or 'exit' to quit: ").strip().lower()
-
-        if user_input == 'exit':
-            break
-
-        if user_input in waypoints:
-            rospy.loginfo(f"Sending robot to waypoint {user_input}")
-            result = send_goal(waypoints[user_input])
+        for waypoint in waypoints:
+            rospy.loginfo(f"Sending robot to waypoint {waypoint['name']}")
+            result = send_goal(waypoint)
             if result:
                 rospy.loginfo("Goal execution done!")
-        else:
-            rospy.loginfo("Invalid waypoint. Please enter a, b, c, or 'exit'.")
+            else:
+                rospy.loginfo("Failed to reach the waypoint.")
 
 if __name__ == '__main__':
     try:
