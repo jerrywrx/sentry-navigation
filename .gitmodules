@@ -1,0 +1,7 @@
+[submodule "livox_ws/src/livox_ros_driver2"]
+	path = livox_ws/src/livox_ros_driver2
+	url = https://github.com/Livox-SDK/livox_ros_driver2.git
+[submodule "slam_ws/src/mid360_localization"]
+	path = slam_ws/src/mid360_localization
+	url = git@github.com:RogerQi/mid360_localization.git
+	branch = jerrywrx/dev
