@@ -1,0 +1,9 @@
+max_obstacle_height:  0.5 # maximum height of obstacles that the costmap will consider
+obstacle_range: 32  # maximum range at which the sensor data will be used to mark obstacles
+raytrace_range: 32  # used to determine how far the robot should consider free space beyond obstacles
+robot_radius: 0.4   # radius of the robot base
+inflation_radius: 0.35  # radius around obstacles that will be inflated to create a safety buffer
+track_unknown_space: false  # whether the costmap should track unknown space
+
+observation_sources: point_cloud_livox
+point_cloud_livox: {data_type: PointCloud2, topic: /cloud_livox_obs, marking: true, clearing: true}
