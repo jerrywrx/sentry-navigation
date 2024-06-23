@@ -1,5 +1,5 @@
 global_costmap:
-  global_frame: /map
+  global_frame: map
   robot_base_frame: plane_base_link   # TODO
   update_frequency: 20.0     # frequency at which the costmap will run its update loop in Hz
   old_navfn_behavior: false  # global_planner is used instead of navfn

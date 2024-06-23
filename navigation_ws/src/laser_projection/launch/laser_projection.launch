@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="laser_projection" type="laser_projection_node" name="laser_projection" output="screen" respawn="true">
+        <param name="publish_tf" value="true"/>
+        <!-- <remap from="projected_scan" to="/plane/front_scan" /> -->
+    </node>
+</launch>

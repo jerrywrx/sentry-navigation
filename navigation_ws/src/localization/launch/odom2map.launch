@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="map_tf_broadcaster_1" args="0 0 0 0 0 0 map odom 50" />
+    <node pkg="tf" type="static_transform_publisher" name="map_tf_broadcaster_3" args="0.2 0 0.25 0 0 0 odom camera_init 50" />
+    <node pkg="tf" type="static_transform_publisher" name="map_tf_broadcaster_2" args="-0.2 0 -0.25 0 0 0 body base_link 50" />
+</launch>

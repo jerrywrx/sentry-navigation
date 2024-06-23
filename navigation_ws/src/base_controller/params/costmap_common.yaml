@@ -6,4 +6,5 @@ inflation_radius: 0.35  # radius around obstacles that will be inflated to creat
 track_unknown_space: false  # whether the costmap should track unknown space
 
 observation_sources: point_cloud_livox
-point_cloud_livox: {data_type: PointCloud2, topic: /cloud_livox_obs, marking: true, clearing: true}
+# TODO: change topic
+point_cloud_livox: {data_type: PointCloud2, topic: /cloud_registered, marking: true, clearing: true}

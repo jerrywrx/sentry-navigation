@@ -1,0 +1,190 @@
+my environment: 
+Ubuntu 20.04
+ROS2 Foxy
+
+Install livox ros driver 2:
+https://github.com/Livox-SDK/livox_ros_driver2
+
+missing packages:
+catkin_pkg
+empy==3.3.4
+numpy
+lark
+
+To launch:
+source /opt/ros/foxy/setup.bash
+source ~/ros2_livox_ws/install/setup.bash
+ros2 launch livox_ros_driver2 [launch file]
+e.g.
+ros2 launch livox_ros_driver2 rviz_MID360_launch.py
+ros2 launch livox_ros_driver2 msg_MID360_launch.py
+
+before launching, modify the config file (MID360_config.json in livox_ros_driver2/config)
+
+change host ip to the ip of the computer/minipc
+change lidar ip to the actual lidar ip. (192.168.1.1XX) where XX is the last two digits of the mid360 lidar's serial number. In our case it's 192.168.1.174
+
+(use ping 192.168.1.174 to check connection)
+
+
+Launching fastlio:
+
+In one terminal:
+. ~/ros2_humble/install/local_setup.bash (humble)
+source ~/ros2_livox_ws/install/setup.bash (livox)
+ros2 launch livox_ros_driver2 msg_MID360_launch.py
+
+In another terminal:
+. ~/ros2_humble/install/local_setup.bash (humble)
+source ~/ros2_fastlio_ws/install/setup.bash (fastlio)
+ros2 launch fast_lio mapping.launch.py config_file:=mid360.yaml
+
+to save pcd:
+ros2 launch fast_lio mapping.launch.py config_file:=mid360.yaml pcd_save_enable:=1
+
+
+
+
+
+
+
+
+
+Change in build.sh in livox_ros_driver2:
+line 57: cd ../../ --> cd ../../../../
+
+
+"Could not find the required component 'livox_ros_driver'."
+
+catkin_make -DCATKIN_WHITELIST_PACKAGES="fast_lio_localization_qn" -DROS_EDITION=ROS1 -DCMAKE_BUILD_TYPE=Release
+catkin_make -DCATKIN_WHITELIST_PACKAGES="fast_lio_sam_qn" -DROS_EDITION=ROS1 -DCMAKE_BUILD_TYPE=Release
+
+
+
+
+ModuleNotFoundError: No module named 'yaml'
+export PYTHONPATH=$CONDA_PREFIX/lib/python3.X/site-packages:$PYTHONPATH (change to the actual python version)
+This sets the PYTHONPATH to include the directory where Python packages for your current conda environment are installed.
+
+catkin build -DCATKIN_WHITELIST_PACKAGES="livox_ros_driver" -DROS_EDITION=ROS1 -DCMAKE_BUILD_TYPE=Release
+
+catkin_make -DCATKIN_WHITELIST_PACKAGES="livox_ros_driver" -DROS_EDITION=ROS1 -DCMAKE_BUILD_TYPE=Release
+
+catkin_make -DCATKIN_WHITELIST_PACKAGES="livox_ros_driver2" -DROS_EDITION=ROS1 -DCMAKE_BUILD_TYPE=Release --make-args VERBOSE=1
+
+
+###############################
+	USEFUL COMMANDS
+###############################
+
+echo $CMAKE_PREFIX_PATH
+echo $ROS_PACKAGE_PATH
+
+catkin_make --only-pkg-with-deps <package_name> (the flag changes the build state; doing catkin_make again will only build the above package and its dependencies)
+To build the entire workspace again:
+catkin_make clean
+catkin_make
+
+rosrun tf2_tools view_frames.py
+
+
+###############################
+
+################################### Note ###################################
+- add nano_gicp and quatro under find_package() of both fastlio packages' cmakelist.
+- change livox_ros_driver2 to livox_ros_driver2 in FAST_LIO's cmakelist
+- change #include <livox_ros_driver/CustomMsg.h> to #include <livox_ros_driver2/CustomMsg.h>, and all livox_ros_driver to livox_ros_driver2 in fastlio src.
+- change mid360 config in livox ros driver
+
+################################ Instructions ################################
+- git clone -b jerrywrx/dev git@github.com:RogerQi/mid360_localization.git
+
+################################### Build ###################################
+
+In ros1_livox_ws
+1. build livox_ros_driver2 (./build.sh ROS1)
+2. source ~/sentry-navigation/livox_ws/devel/setup.bash
+
+In mid360_ws:
+2. catkin_make --only-pkg-with-deps nano_gicp
+3. catkin_make --only-pkg-with-deps fast_lio_sam_qn
+4. catkin_make --only-pkg-with-deps fast_lio_localization_qn
+5. catkin_make --only-pkg-with-deps fast_lio
+
+Change MID360_config.json in livox_ros_driver2
+
+########################### Workspace Overlaying ############################
+
+(remove devel and build of all workspaces except slam_ws)
+- source noetic
+- build slam_ws first
+- source slam_ws/devel/setup.bash
+- build livox_ws
+- source livox_ws/devel/setup.bash
+- build navigation_ws
+- source navigation_ws/devel/setup.bash
+
+
+################################### Run ###################################
+
+1. noetic && conda activate rm_vision
+2. (old) source ~/ros1_livox_ws/devel/setup.bash && source ~/mid360_ws/devel/setup.bash
+2. source ~/sentry-navigation/navigation_ws/devel/setup.bash (assuming correct ws overlay)
+
+##############################################################
+FASTLIO-QN
+
+Online SLAM
+roslaunch livox_ros_driver2 msg_MID360.launch
+roslaunch fast_lio_sam_qn run.launch lidar:=livox
+
+Localization
+roslaunch livox_ros_driver2 msg_MID360.launch
+roslaunch fast_lio_localization_qn run.launch lidar:=livox
+##############################################################
+
+
+roslaunch livox_ros_driver2 msg_MID360.launch
+
+roslaunch fast_lio mapping_mid360.launch
+
+roslaunch base_controller move_base.launch
+
+roslaunch laser_projection laser_projection.launch
+
+roslaunch localization localization.launch
+
+
+################################### ROS Documents ###################################
+
+TF
+http://wiki.ros.org/navigation/Tutorials/RobotSetup/TF
+
+move_base
+http://wiki.ros.org/move_base
+
+Navigation
+http://wiki.ros.org/navigation
+
+Nav setup
+http://wiki.ros.org/navigation/Tutorials/RobotSetup
+
+TEB
+http://wiki.ros.org/teb_local_planner
+
+Coordinate Frames for Mobile Platforms
+https://www.ros.org/reps/rep-0105.html
+
+
+#####################################################################################
+
+
+TODO:
+- why map frame moving relative to robot?
+- what if using localization from fastlio?
+
+- change topic in costmap_common.yaml after pointcloud processing
+
+
+
+

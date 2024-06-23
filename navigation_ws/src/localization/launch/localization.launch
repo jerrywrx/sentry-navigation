@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find localization)/launch/odom2map.launch" />
+    <include file="$(find localization)/launch/base2odom.launch" />
+</launch>
