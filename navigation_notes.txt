@@ -194,3 +194,17 @@ pcd_file = '/home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/FA
 /home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/third_party/FAST_LIO/PCD/openlab.pcd
 
 
+
+rostopic pub -r 1 /cmd_vel geometry_msgs/Twist \
+"linear:
+  x: 20.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0"
+
+
+
+

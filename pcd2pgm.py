@@ -48,7 +48,8 @@ def pcd_to_2d_occupancy_grid(pcd, resolution):
 
 def save_pgm(grid_data, file_name):
     # Save the occupancy grid as a PGM file
-    cv2.imwrite(file_name, grid_data)
+    cv2.imwrite(file_name + '.pgm', grid_data)
+    cv2.imwrite(file_name + '.png', grid_data)
 
 def visualize_point_cloud(pcd, point_size=1):
     """
@@ -69,8 +70,7 @@ def visualize_point_cloud(pcd, point_size=1):
 def main():
     pcd_file = '/home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/third_party/FAST_LIO/PCD/openlab.pcd'  # Path to your PCD file
     resolution = 0.05  # Resolution in meters
-    pgm_file_name = input("Enter the filename you wish to save (without .pgm): ")  # Output PGM file name
-    pgm_file_name = pgm_file_name + '.pgm'
+    pgm_file_name = input("Enter the output filename: ")  # Output file name
 
     pcd = o3d.io.read_point_cloud(pcd_file)
     
@@ -85,7 +85,7 @@ def main():
         filtered_pcd = filter_point_cloud_by_z(pcd, z_min, z_max)
         visualize_point_cloud(filtered_pcd)
 
-        confirm = input("Do you want to save the filtered point cloud as PGM? (yes/no): ").strip().lower()
+        confirm = input("Do you want to save the filtered point cloud? (yes/no): ").strip().lower()
         if confirm == 'yes':
             occupancy_grid = pcd_to_2d_occupancy_grid(filtered_pcd, resolution)
             save_pgm(occupancy_grid, pgm_file_name)

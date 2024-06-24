@@ -1,5 +1,5 @@
 <launch>
-    <!-- <node name="map_server" pkg="map_server" type="map_server"  respawn="true" args="$(find base_controller)/params/map_server.yaml"/> -->
+    <node name="map_server" pkg="map_server" type="map_server"  respawn="true" args="$(find base_controller)/params/map_server.yaml"/>
 
     <node pkg="move_base" type="move_base" name="move_base" output="screen"  respawn="true">
         <rosparam file="$(find base_controller)/params/costmap_common.yaml" command="load" ns="global_costmap" />

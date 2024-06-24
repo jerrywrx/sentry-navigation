@@ -13,9 +13,11 @@ class RobotDriver:
 
     def cmd_callback(self, msg):
         rospy.loginfo("Received control speed!")
-        vx = msg.linear.x
-        vy = msg.linear.y
-        wz = msg.angular.z
+
+        # Note: x and y are swapped in the robot's frame
+        vx = -msg.linear.y * 25.0  
+        vy = msg.linear.x * 25.0 
+        wz = -msg.angular.z * 25.0 
         
         data = {'vx': vx, 'vy': vy, 'vw': wz}
         self.uart.create_and_send_packet(self.cmd_id, data)
