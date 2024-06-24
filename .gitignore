@@ -5,3 +5,5 @@ livox_ws/src/CMakeLists.txt
 slam_ws/src/CMakeLists.txt
 frames.gv
 frames.pdf
+*.pgm
+.vscode

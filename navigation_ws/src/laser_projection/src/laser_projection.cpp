@@ -28,7 +28,8 @@ void project2plane_callback(const ros::TimerEvent&){    //将3D位置投影到2D
     static tf2_ros::TransformBroadcaster br;
     geometry_msgs::TransformStamped base2map;
     try {
-        base2map = tfBuffer.lookupTransform("map", "base_link", ros::Time(0));
+        ros::Time now = ros::Time::now();
+        base2map = tfBuffer.lookupTransform("map", "base_link", now, ros::Duration(1.0));
     }
     catch (tf2::TransformException &ex) {
         ROS_WARN("Project2Plane Get TF ERROR!!: %s", ex.what());
@@ -93,6 +94,10 @@ int main(int argc, char **argv) {
     ros::NodeHandle pnh("~");
     pnh.param<bool>("publish_tf", publish_tf, false);
     tf2_ros::TransformListener tfListener(tfBuffer);
+
+    // Ensure the listener is fully initialized
+    ros::Duration(1.0).sleep();
+    
     // auto sub1 = pnh.subscribe("/scan", 100, laserCallback);
     ros::Timer timer1 = pnh.createTimer(ros::Duration(0.02), project2plane_callback);
     // pub = pnh.advertise<sensor_msgs::LaserScan>("/projected_scan", 1);

@@ -87,6 +87,8 @@ catkin_make
 
 rosrun tf2_tools view_frames.py
 
+rosrun tf tf_echo /map /base_link
+
 
 ###############################
 
@@ -148,11 +150,12 @@ roslaunch livox_ros_driver2 msg_MID360.launch
 
 roslaunch fast_lio mapping_mid360.launch
 
-roslaunch base_controller move_base.launch
+roslaunch localization localization.launch
 
 roslaunch laser_projection laser_projection.launch
 
-roslaunch localization localization.launch
+roslaunch base_controller move_base.launch
+
 
 
 ################################### ROS Documents ###################################
@@ -186,5 +189,8 @@ TODO:
 - change topic in costmap_common.yaml after pointcloud processing
 
 
+pcd_file = '/home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/FAST-LIO-SAM-QN/fast_lio_sam_qn/results/floor1.pcd'  # Path to your PCD file
+
+/home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/third_party/FAST_LIO/PCD/openlab.pcd
 
 
