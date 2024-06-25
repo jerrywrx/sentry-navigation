@@ -119,10 +119,10 @@ Change MID360_config.json in livox_ros_driver2
 
 (remove devel and build of all workspaces except slam_ws)
 - source noetic
-- build slam_ws first
-- source slam_ws/devel/setup.bash
-- build livox_ws
+- build livox_ws first
 - source livox_ws/devel/setup.bash
+- build slam_ws 
+- source slam_ws/devel/setup.bash
 - build navigation_ws
 - source navigation_ws/devel/setup.bash
 
@@ -154,8 +154,9 @@ roslaunch localization localization.launch
 
 roslaunch laser_projection laser_projection.launch
 
-roslaunch base_controller move_base.launch
+roslaunch robot_driver robot_driver.launch
 
+roslaunch base_controller move_base.launch
 
 
 ################################### ROS Documents ###################################
@@ -188,6 +189,10 @@ TODO:
 
 - change topic in costmap_common.yaml after pointcloud processing
 
+- robot jerky motion
+  - 20 hz may not be enough; need to interpolate
+  - 30 hz may work, 40 hz much better
+
 
 pcd_file = '/home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/FAST-LIO-SAM-QN/fast_lio_sam_qn/results/floor1.pcd'  # Path to your PCD file
 
@@ -204,6 +209,8 @@ angular:
   x: 0.0
   y: 0.0
   z: 0.0"
+
+
 
 
 

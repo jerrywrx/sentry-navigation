@@ -1,0 +1,4 @@
+<launch>
+    <node name="robot_node" pkg="robot_driver" type="robot.py" output="screen"/>
+    <node name="cmd_vel_adjuster" pkg="robot_driver" type="cmd_vel_adjuster.py" output="screen"/>
+</launch>
