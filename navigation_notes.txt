@@ -150,6 +150,7 @@ roslaunch livox_ros_driver2 msg_MID360.launch
 
 roslaunch fast_lio mapping_mid360.launch
 
+""""""""""""""""""""""""""""""""""""""""""
 roslaunch localization localization.launch
 
 roslaunch laser_projection laser_projection.launch
@@ -157,7 +158,8 @@ roslaunch laser_projection laser_projection.launch
 roslaunch robot_driver robot_driver.launch
 
 roslaunch base_controller move_base.launch
-
+""""""""""""""""""""""""""""""""""""""""""
+--> roslaunch start_all start_all.launch
 
 ################################### ROS Documents ###################################
 
