@@ -159,7 +159,7 @@ roslaunch robot_driver robot_driver.launch
 
 roslaunch base_controller move_base.launch
 """"""""""""""""""""""""""""""""""""""""""
---> roslaunch start_all start_all.launch
+roslaunch start_all start_all.launch
 
 ################################### ROS Documents ###################################
 
@@ -196,24 +196,8 @@ TODO:
   - 30 hz may work, 40 hz much better
 
 
-pcd_file = '/home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/FAST-LIO-SAM-QN/fast_lio_sam_qn/results/floor1.pcd'  # Path to your PCD file
 
-/home/jerrywang/sentry-navigation/slam_ws/src/mid360_localization/third_party/FAST_LIO/PCD/openlab.pcd
-
-
-
-rostopic pub -r 1 /cmd_vel geometry_msgs/Twist \
-"linear:
-  x: 20.0
-  y: 0.0
-  z: 0.0
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.0"
-
-
-
+rviz -d fastlio_nav.rviz 
 
 
 
