@@ -8,4 +8,4 @@ frames.pdf
 *.pgm
 .vscode
 *.bag
-__pycache__
+*/__pycache__
