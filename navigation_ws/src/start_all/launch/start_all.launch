@@ -1,6 +1,8 @@
 <launch>
   <include file="$(find localization)/launch/localization.launch" />
 
+  <include file="$(find pcl_processing)/launch/pcl_processing.launch" />
+
   <include file="$(find laser_projection)/launch/laser_projection.launch" />
 
   <include file="$(find robot_driver)/launch/robot_driver.launch" />

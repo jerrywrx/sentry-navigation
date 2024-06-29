@@ -1,7 +1,0 @@
-<launch>
-    <node pkg="pcl_processing" type="pcl_processing_node" name="pcl_processing" output="screen" respawn="true">
-        <remap from="pointcloud2_in" to="/cloud_registered"/>
-        <remap from="pointcloud2_out" to="/cloud_processed" />
-        <!-- <remap from="hight_image" to="/obs_image" /> -->
-    </node>
-</launch>
