@@ -108,6 +108,6 @@ roslaunch livox_ros_driver2 msg_MID360.launch
 # launch fast-lio
 roslaunch fast_lio mapping_mid360.launch
 
-# launch localization, laser projection, robot controller, and move_base
+# launch pcl_processing, localization, laser_projection, base_controller, and move_base
 roslaunch start_all start_all.launch
 ```

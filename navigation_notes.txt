@@ -158,6 +158,8 @@ roslaunch laser_projection laser_projection.launch
 roslaunch robot_driver robot_driver.launch
 
 roslaunch base_controller move_base.launch
+
+roslaunch pcl_processing pcl_processing.launch
 """"""""""""""""""""""""""""""""""""""""""
 roslaunch start_all start_all.launch
 
@@ -184,6 +186,7 @@ https://www.ros.org/reps/rep-0105.html
 
 #####################################################################################
 
+
 TODO:
 - why map frame moving relative to robot?
 - what if using localization from fastlio?
@@ -194,16 +197,9 @@ TODO:
   - 20 hz may not be enough; need to interpolate
   - 30 hz may work, 40 hz much better
 
-#####################################################################################
+
 
 rviz -d fastlio_nav.rviz 
 
-Host:
-export ROS_MASTER_URI=http://10.193.111.187:11311 &&
-export ROS_HOSTNAME=10.193.111.187
-
-alias irm="ssh irm@10.193.166.251"
-
-alias rrviz="rviz -d fastlio_nav.rviz"
 
 
