@@ -6,4 +6,4 @@ inflation_radius: 0.5 #0.35 # radius around obstacles that will be inflated to c
 track_unknown_space: false  # whether the costmap should track unknown space
 
 observation_sources: point_cloud_livox
-point_cloud_livox: {sensor_frame: body, data_type: PointCloud2, topic: /cloud_processed, marking: true, clearing: true}
+point_cloud_livox: {sensor_frame: body, data_type: PointCloud2, topic: /corrected_current_pcd, marking: true, clearing: true}

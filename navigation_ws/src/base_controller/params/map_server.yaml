@@ -1,4 +1,4 @@
-image: openlab.png # map2 map_RMUL
+image: openlab_half.png # map2 map_RMUL
 resolution: 0.05
 origin: [-6.45, -5.2, 0.0]
 occupied_thresh: 0.65
