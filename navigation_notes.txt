@@ -79,6 +79,7 @@ catkin_make -DCATKIN_WHITELIST_PACKAGES="livox_ros_driver2" -DROS_EDITION=ROS1 -
 
 echo $CMAKE_PREFIX_PATH
 echo $ROS_PACKAGE_PATH
+echo $LD_LIBRARY_PATH
 
 catkin_make --only-pkg-with-deps <package_name> (the flag changes the build state; doing catkin_make again will only build the above package and its dependencies)
 To build the entire workspace again:
@@ -138,11 +139,11 @@ FASTLIO-QN
 
 Online SLAM
 roslaunch livox_ros_driver2 msg_MID360.launch
-roslaunch fast_lio_sam_qn run.launch lidar:=livox
+roslaunch fast_lio_sam_qn run.launch lidar:=livox rviz:=false
 
 Localization
 roslaunch livox_ros_driver2 msg_MID360.launch
-roslaunch fast_lio_localization_qn run.launch lidar:=livox
+roslaunch fast_lio_localization_qn run.launch lidar:=livox rviz:=false
 ##############################################################
 
 
@@ -196,10 +197,6 @@ TODO:
 - robot jerky motion
   - 20 hz may not be enough; need to interpolate
   - 30 hz may work, 40 hz much better
-
-
-
-rviz -d fastlio_nav.rviz 
 
 
 
