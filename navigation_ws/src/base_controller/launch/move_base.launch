@@ -5,6 +5,7 @@
         <rosparam file="$(find base_controller)/params/costmap_common.yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find base_controller)/params/costmap_common.yaml" command="load" ns="local_costmap" />
         <rosparam file="$(find base_controller)/params/global_costmap.yaml" command="load" />
+        <rosparam file="$(find base_controller)/params/local_costmap.yaml" command="load" />
         <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
         <rosparam file="$(find base_controller)/params/teb_params_2.yaml" command="load" />
         <param name="controller_frequency" value="40.0"/>

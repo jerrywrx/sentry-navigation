@@ -1,6 +1,6 @@
 TebLocalPlannerROS:
 
-  odom_topic: odometry/filtered
+  odom_topic: odom
 
     # Trajectory
 
@@ -34,7 +34,7 @@ TebLocalPlannerROS:
 
   footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
     type: "circular"
-    radius: 0.25 # for type "circular"
+    radius: 0.3 # for type "circular"
     line_start: [-0.1, 0.0] # for type "line"
     line_end: [0.1, 0.0] # for type "line"
     front_offset: 0.2 # for type "two_circles"
