@@ -47,8 +47,8 @@ def pcd_to_2d_occupancy_grid(pcd, resolution):
     return occupancy_grid
 
 def save_pgm(grid_data, file_name):
-    # Save the occupancy grid as a PGM file
-    cv2.imwrite(file_name + '.pgm', grid_data)
+    # Save the occupancy grid as a PNG file
+    # cv2.imwrite(file_name + '.pgm', grid_data)
     cv2.imwrite(file_name + '.png', grid_data)
 
 def visualize_point_cloud(pcd, point_size=1):
