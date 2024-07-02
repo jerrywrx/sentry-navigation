@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 
+"""
+Example for sending keyboard commands as velocities to /cmd_vel 
+(Similar to turtlebot).
+
+Before running this example, launch robot_driver.launch and 
+flip the dbus switch to teleop/navigation position (SWR UP)
+"""
+
 import rospy
 from geometry_msgs.msg import Twist
 import sys, select, termios, tty
@@ -57,8 +65,8 @@ if __name__ == "__main__":
     rospy.init_node('teleop_keyboard')
     pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 
-    speed = 1.5
-    turn = 1.5
+    speed = 0.5
+    turn = 0.5
     x = 0
     y = 0
     z = 0

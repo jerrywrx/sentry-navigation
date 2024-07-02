@@ -7,4 +7,4 @@ frames.gv
 frames.pdf
 *.pgm
 .vscode
-*/__pycache__
+**/__pycache__

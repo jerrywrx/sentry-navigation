@@ -3,9 +3,12 @@ import os
 import time
 from pynput import keyboard
 
-# setting paths
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Communication'))
+""" 
+Example for directly sending keyboard commands as velocities 
+to the lower computer through UART.
+
+Useful for testing communication between upper and lower computer.
+"""
 
 from uart_communicator import UARTCommunicator
 import config

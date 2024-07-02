@@ -1,5 +1,14 @@
 #!/usr/bin/env python
 
+"""
+Example for sending velocity commands to /cmd_vel with
+a configured transmission frequency. 
+
+Use rqt_reconfigure to adjust the velocities and transmission
+frequency easily. Useful for determining a suitable controller
+frequency or simply testing a constant velocity.
+"""
+
 import rospy
 from geometry_msgs.msg import Twist
 from dynamic_reconfigure.server import Server
@@ -13,7 +22,7 @@ class CmdVelAdjuster:
         self.angular_x = 0.0
         self.angular_y = 0.0
         self.angular_z = 0.0
-        self.transmission_frequency = 10.0
+        self.transmission_frequency = 40.0
         self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         self.srv = Server(CmdVelAdjusterConfig, self.reconfigure_callback)
 

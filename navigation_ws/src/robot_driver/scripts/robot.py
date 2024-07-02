@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+""" 
+Main robot driver for communicating with the lower computer.
+
+Subscribes to /cmd_vel and sends packets through UART.
+"""
+
 import rospy
 from geometry_msgs.msg import Twist
 import struct
@@ -10,15 +16,15 @@ class RobotDriver:
     def __init__(self):
         self.uart = UARTCommunicator(config)
         self.cmd_id = self.uart.cfg.CHASSIS_CMD_ID
+        self.VEL_FACTOR = 160.0
 
     def cmd_callback(self, msg):
         rospy.loginfo("Received control speed!")
 
         # Note: x and y are swapped in the robot's frame
-        vx = -msg.linear.y * 160.0  
-        vy = msg.linear.x * 160.0 
-        wz = -msg.angular.z * 160.0 
-        # wz = 0.0
+        vx = -msg.linear.y * self.VEL_FACTOR
+        vy = msg.linear.x * self.VEL_FACTOR
+        wz = -msg.angular.z * self.VEL_FACTOR
         
         data = {'vx': vx, 'vy': vy, 'vw': wz}
         self.uart.create_and_send_packet(self.cmd_id, data)
