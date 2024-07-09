@@ -78,7 +78,12 @@ source ../../devel/setup.bash
 
 ```bash
 cd ~/sentry-navigation/slam_ws
-catkin_make
+
+catkin_make --only-pkg-with-deps nano_gicp
+catkin_make --only-pkg-with-deps fast_lio_sam_qn
+catkin_make --only-pkg-with-deps fast_lio_localization_qn
+catkin_make --only-pkg-with-deps fast_lio
+
 source devel/setup.bash
 ```
 
