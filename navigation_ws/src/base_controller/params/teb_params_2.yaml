@@ -19,10 +19,10 @@ TebLocalPlannerROS:
   max_vel_x: 5  # 11 12.5
   max_vel_y: 2.5
   max_vel_x_backwards: 5  # 0.5
-  max_vel_theta: 1.0  # the angular velocity is also bounded by min_turning_radius in case of a carlike robot (r = v / omega)
+  max_vel_theta: 5  # normal mode: 1.0  spin mode: 5.0
   acc_lim_x: 2  # 0.5 3  1.1
   acc_lim_y: 3
-  acc_lim_theta: 1  # 0.5 0.95
+  acc_lim_theta: 10  # normal mode: 1.0  spin mode: 10.0
 
   # Carlike robot parameters
   min_turning_radius: 0.0  # 0.5 Min turning radius of the carlike robot (compute value using a model or adjust with rqt_reconfigure manually)
@@ -42,7 +42,7 @@ TebLocalPlannerROS:
 
   # Goal Tolerance
   xy_goal_tolerance: 0.15
-  yaw_goal_tolerance: 0.8
+  yaw_goal_tolerance: 3.2  # normal mode: 0.8  spin mode: 3.2
   free_goal_vel: False
   complete_global_plan: True
 
