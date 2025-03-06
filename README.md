@@ -1,5 +1,10 @@
 # sentry-navigation
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4f094ae7-d905-424a-891e-3f16e06020aa" width="49%">
+  <img src="https://github.com/user-attachments/assets/cb7245c2-a109-4340-9522-202996fcf833" width="49%">
+</p>
+
 This is the development repository for an autonomous omnidirectional robot.
 
 Note: fastlio_ws is no longer used.
